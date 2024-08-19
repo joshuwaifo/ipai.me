@@ -106,7 +106,7 @@ export function HomePage() {
                 <p className="text-muted-foreground">
                   Empower your employees with AI-driven coaching for training, development, and competitive gaming.
                 </p>
-                <Link href="#" className="mt-auto" prefetch={false}>
+                <Link href="https://escapevelocity.vercel.app/" className="mt-auto" prefetch={false}>
                   Learn More
                   <ArrowRightIcon className="ml-2 w-4 h-4" />
                 </Link>
