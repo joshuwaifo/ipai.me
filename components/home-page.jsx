@@ -91,9 +91,9 @@ export function HomePage() {
                 </div>
                 <p className="text-muted-foreground">
                   Leverage AI to create personalized virtual assistants that streamline your workflows and boost
-                  productivity.
+                  productivity. Powered by D-ID.
                 </p>
-                <Link href="#" className="mt-auto" prefetch={false}>
+                <Link href="https://chat.d-id.com/" className="mt-auto" prefetch={false}>
                   Learn More
                   <ArrowRightIcon className="ml-2 w-4 h-4" />
                 </Link>
