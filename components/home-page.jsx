@@ -69,7 +69,7 @@ export function HomePage() {
             <p
               className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-primary-foreground/80">
               Our AI-powered services help you streamline operations, boost productivity, and drive innovation. From
-              personal assistants to competitive gaming coaching, we've got you covered.
+              personal assistants to competitive gaming coaching, we&apos;ve got you covered.
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <Button variant="secondary" className="px-8 py-3">
@@ -159,7 +159,7 @@ export function HomePage() {
               <div>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Money-Back Guarantee</h2>
                 <p className="mt-4 text-muted-foreground">
-                  We stand behind the quality of our services. If you're not completely satisfied with the results, we
+                  We stand behind the quality of our services. If you&apos;re not completely satisfied with the results, we
                   offer a 100% money- back guarantee. Our commitment to your success is unwavering.
                 </p>
                 <div className="mt-6">
@@ -185,8 +185,8 @@ export function HomePage() {
                   </div>
                 </div>
                 <p className="text-muted-foreground">
-                  "The AI-powered services from ipai.me have been a game-changer\n for our business. We've seen\n
-                  a\n\n\n\n significant boost in\n productivity and innovation."
+                  &quot;The AI-powered services from ipai.me have been a game-changer for our business. We&apos;ve seen
+                  a significant boost in productivity and innovation.&quot;
                 </p>
               </div>
               <div className="bg-muted rounded-lg p-6 flex flex-col gap-4">
@@ -201,8 +201,8 @@ export function HomePage() {
                   </div>
                 </div>
                 <p className="text-muted-foreground">
-                  "The data extraction and analysis services from ipai.me have\n been invaluable in helping us\n\n\n\n
-                  identify\n high-net-worth\n individuals and investment patterns."
+                  &quot;The data extraction and analysis services from ipai.me have been invaluable in helping us
+                  identify high-net-worth individuals and investment patterns.&quot;
                 </p>
               </div>
               <div className="bg-muted rounded-lg p-6 flex flex-col gap-4">
@@ -217,8 +217,8 @@ export function HomePage() {
                   </div>
                 </div>
                 <p className="text-muted-foreground">
-                  "The AI coaching and idea generation services from ipai.me have\n been instrumental in
-                  driving\n\n\n\n\n innovation and employee\n development within our organization."
+                  &quot;The AI coaching and idea generation services from ipai.me have been instrumental in
+                  driving innovation and employee development within our organization.&quot;
                 </p>
               </div>
             </div>
