@@ -131,8 +131,7 @@ export function HomePage() {
                   <h3 className="text-xl font-semibold">Data Extraction</h3>
                 </div>
                 <p className="text-muted-foreground">
-                  Unlock valuable insights with our data extraction and analysis services to identify high-net-worth
-                  individuals and investment patterns.
+                  Unlock valuable insights with our data extraction and analysis services to identify investment patterns, coaching methods and recommendations.
                 </p>
                 <Link href="#" className="mt-auto" prefetch={false}>
                   Learn More
@@ -202,7 +201,7 @@ export function HomePage() {
                 </div>
                 <p className="text-muted-foreground">
                   &quot;The data extraction and analysis services from ipai.me have been invaluable in helping us
-                  identify investment patterns, coaching methods and recommendations.&quot;
+                  identify high-net-worth individuals and investment patterns.&quot;
                 </p>
               </div>
               <div className="bg-muted rounded-lg p-6 flex flex-col gap-4">
