@@ -38,7 +38,7 @@ export async function POST(req) {
         : `Analyze this football play image from a ${perspective}'s perspective. Provide a concise recommended action based on the current game situation, considering both real-life and video game scenarios.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4-vision-preview",
+      model: "gpt-4o",
       messages: [
         {
           role: "user",
