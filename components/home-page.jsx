@@ -202,7 +202,7 @@ export function HomePage() {
                 </div>
                 <p className="text-muted-foreground">
                   &quot;The data extraction and analysis services from ipai.me have been invaluable in helping us
-                  identify high-net-worth individuals and investment patterns.&quot;
+                  identify investment patterns, coaching methods and recommendations.&quot;
                 </p>
               </div>
               <div className="bg-muted rounded-lg p-6 flex flex-col gap-4">
