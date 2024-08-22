@@ -4,7 +4,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "IP AI",
+  title: "AI IP for you",
   description: "Created by Joshua Uwaifo",
 };
 
