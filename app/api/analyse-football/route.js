@@ -34,8 +34,8 @@ export async function POST(req) {
 
     const promptText =
       mediaType === "video"
-        ? `Analyze this football play from a ${perspective}'s perspective at ${currentTime} seconds into the video. Provide a concise recommended action based on the current game situation, considering both real-life and video game scenarios.`
-        : `Analyze this football play image from a ${perspective}'s perspective. Provide a concise recommended action based on the current game situation, considering both real-life and video game scenarios.`;
+        ? `Analyze this football play from a ${perspective}'s perspective at ${currentTime} seconds into the video. Provide a concise 1 sentence recommended action based on the current game situation, considering both real-life and video game scenarios.`
+        : `Analyze this football play image from a ${perspective}'s perspective. Provide a concise 1 sentence recommended action based on the current game situation, considering both real-life and video game scenarios.`;
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
