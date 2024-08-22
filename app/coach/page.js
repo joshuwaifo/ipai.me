@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -21,7 +20,10 @@ export default function Component() {
   const [duration, setDuration] = useState(0);
   const [gameState, setGameState] = useState("");
   const [perspective, setPerspective] = useState("Coach");
-  const [recommendedAction, setRecommendedAction] = useState("");
+  const [recommendedActions, setRecommendedActions] = useState({
+    team1: [],
+    team2: [],
+  });
   const videoRef = useRef(null);
 
   const handleFileChange = (event) => {
@@ -72,12 +74,31 @@ export default function Component() {
       }
 
       const result = await response.json();
-      setRecommendedAction(result.recommendedAction);
+      if (
+        result.recommendedActions &&
+        result.recommendedActions.team1 &&
+        result.recommendedActions.team2
+      ) {
+        setRecommendedActions(result.recommendedActions);
+      } else {
+        throw new Error("Invalid response structure");
+      }
     } catch (error) {
       console.error("Error analysing content:", error);
-      setRecommendedAction(
-        "An error occurred while analysing the football content.",
-      );
+      setRecommendedActions({
+        team1: [
+          {
+            action: "An error occurred while analysing the football content.",
+            probability: 100,
+          },
+        ],
+        team2: [
+          {
+            action: "An error occurred while analysing the football content.",
+            probability: 100,
+          },
+        ],
+      });
     }
   };
 
@@ -88,12 +109,14 @@ export default function Component() {
           <CardTitle>Football AI Coach</CardTitle>
         </CardHeader>
         <CardContent>
+          <h3 className="text-lg font-semibold mb-2">Game State:</h3>
           <Input
             type="file"
             accept="video/*,image/*"
             onChange={handleFileChange}
             className="mb-4"
           />
+
           {mediaSrc && (
             <div className="mb-4">
               {mediaType === "video" ? (
@@ -120,7 +143,7 @@ export default function Component() {
             </div>
           )}
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Game Situation:</h3>
+            <h3 className="text-lg font-semibold mb-2">Progress:</h3>
             <p>{gameState}</p>
           </div>
           <div className="mb-4">
@@ -140,16 +163,35 @@ export default function Component() {
         </CardContent>
       </Card>
       <Card>
-        <CardHeader>
-          <CardTitle>Recommended Action</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Textarea
-            value={recommendedAction}
-            readOnly
-            className="w-full h-32"
-          />
-        </CardContent>
+        <CardTitle className="m-4">Recommended Actions:</CardTitle>
+        <Card className="mb-4">
+          <CardHeader>
+            <CardTitle>Team 1</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {recommendedActions.team1.map((action, index) => (
+              <div key={index} className="mb-2">
+                <p>
+                  <strong>{action.probability}%:</strong> {action.action}
+                </p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Team 2</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {recommendedActions.team2.map((action, index) => (
+              <div key={index} className="mb-2">
+                <p>
+                  <strong>{action.probability}%:</strong> {action.action}
+                </p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </Card>
     </div>
   );

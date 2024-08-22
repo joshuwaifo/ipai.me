@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { writeFile, unlink } from "fs/promises";
 import path from "path";
@@ -28,17 +28,40 @@ export async function POST(req) {
   await writeFile(filePath, buffer);
 
   try {
-    // For video, you would need to extract the frame at the current time
-    // This would require additional server-side processing with a library like ffmpeg
-    // For this example, we'll assume we have the correct frame for videos
-
     const promptText =
       mediaType === "video"
-        ? `Analyze this football play from a ${perspective}'s perspective at ${currentTime} seconds into the video. Provide a concise 1 sentence recommended action based on the current game situation, considering both real-life and video game scenarios.`
-        : `Analyze this football play image from a ${perspective}'s perspective. Provide a concise 1 sentence recommended action based on the current game situation, considering both real-life and video game scenarios.`;
+        ? `Analyze this football play from a ${perspective}'s perspective at ${currentTime} seconds into the video. For each team, provide 3 recommended actions, 1 sentence each, with their percentage probabilities. Consider both real-life and video game scenarios. Before providing the final answer, take time to think, show your working out and make sure the percentage probabilities sum up to 100. Format your response as JSON with the following structure:
+      {
+        "team1": [
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX }
+        ],
+        "team2": [
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX }
+        ]
+      }`
+        : `Analyze this football play image from a ${perspective}'s perspective. For each team, provide 3 recommended actions with their percentage probabilities. Consider both real-life and video game scenarios. Before providing the final answer, take time to think, show your working out and make sure the percentage probabilities sum up to 100. Format your response as JSON with the following structure:
+      {
+        "team1": [
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX }
+        ],
+        "team2": [
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX },
+          { "action": "Action description", "probability": XX }
+        ]
+      }`;
 
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
+      response_format: {
+        type: "json_object",
+      },
       messages: [
         {
           role: "user",
@@ -55,13 +78,44 @@ export async function POST(req) {
       ],
     });
 
-    const recommendedAction = response.choices[0].message.content;
+    console.log("Raw AI response:", response.choices[0].message.content);
 
-    return NextResponse.json({ recommendedAction });
+    let recommendedActions;
+    try {
+      recommendedActions = JSON.parse(response.choices[0].message.content);
+    } catch (parseError) {
+      console.error("Error parsing AI response:", parseError);
+      recommendedActions = {
+        team1: [{ action: "Error parsing AI response", probability: 100 }],
+        team2: [{ action: "Error parsing AI response", probability: 100 }],
+      };
+    }
+
+    // Ensure the structure is correct
+    if (!recommendedActions.team1 || !recommendedActions.team2) {
+      throw new Error("Invalid response structure from AI");
+    }
+
+    return NextResponse.json({ recommendedActions });
   } catch (error) {
-    console.error("Error analyzing football content:", error);
+    console.error("Error analysing football content:", error);
     return NextResponse.json(
-      { error: "Error analyzing football content" },
+      {
+        recommendedActions: {
+          team1: [
+            {
+              action: "Error analysing, please make sure data is appropriate",
+              probability: 100,
+            },
+          ],
+          team2: [
+            {
+              action: "Error analysing, please make sure data is appropriate",
+              probability: 100,
+            },
+          ],
+        },
+      },
       { status: 500 },
     );
   } finally {
