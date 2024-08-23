@@ -150,6 +150,43 @@ export function HomePage() {
                   <ArrowRightIcon className="ml-2 w-4 h-4" />
                 </Link>
               </div>
+              <div className="bg-muted rounded-lg p-6 flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  <InfoIcon className="w-10 h-10 text-primary" />
+                  <h3 className="text-xl font-semibold">Decision Maker</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  Optimise your decision making processes by using
+                  well-researched AI tools. Proprietary products built, powered
+                  by Perplexity.
+                </p>
+                <Link
+                  href="https://www.perplexity.ai/"
+                  className="mt-auto"
+                  prefetch={true}
+                >
+                  Learn More
+                  <ArrowRightIcon className="ml-2 w-4 h-4" />
+                </Link>
+              </div>
+              <div className="bg-muted rounded-lg p-6 flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  <InfoIcon className="w-10 h-10 text-primary" />
+                  <h3 className="text-xl font-semibold">Website Builder</h3>
+                </div>
+                <p className="text-muted-foreground">
+                  Build a full-stack web MVP in an afternoon and a full-fledged
+                  app in 100 days. Powered by V0.
+                </p>
+                <Link
+                  href="https://v0.dev/"
+                  className="mt-auto"
+                  prefetch={true}
+                >
+                  Learn More
+                  <ArrowRightIcon className="ml-2 w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>
