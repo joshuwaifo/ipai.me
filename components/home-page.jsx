@@ -130,7 +130,7 @@ export function HomePage() {
                   Unleash your creativity with our idea novelty checker for IP,
                   patents, research papers, grants, and bids.
                 </p>
-                <Link href="#" className="mt-auto" prefetch={false}>
+                <Link href="https://avfc-joshua-uwaifo.vercel.app/" className="mt-auto" prefetch={true}>
                   Learn More
                   <ArrowRightIcon className="ml-2 w-4 h-4" />
                 </Link>
