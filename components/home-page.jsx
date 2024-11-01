@@ -113,7 +113,7 @@ export function HomePage() {
                   development, and competitive gaming.
                 </p>
                 <Link
-                  href="https://escapevelocity.vercel.app/"
+                  href="https://www.loom.com/share/4b7aead31ffe47acae5adca21d9f4a38?sid=2c15efb5-c668-4e14-9d92-2b9d3915d05a"
                   className="mt-auto"
                   prefetch={false}
                 >
